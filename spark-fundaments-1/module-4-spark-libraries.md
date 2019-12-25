@@ -113,3 +113,16 @@ sqlContext = pyspark.sql.SQLContext(sc)
         ssc.awaitTermination()
         ```
     - > One Import thing to note that when each element of the application is executed, the real processing doesn't actually happens yet. We have to explicitly tell it to start using `ssc.start()` and once the application starts it will continue on running untill the computation terminates.
+## MLlib
+- It is a machine Learning library built on top of Spark Core and it contains tools and utilities for:
+    - Classification
+    - Regression
+    - Clustering
+    - Collaborative filtering
+    - Dimensionality Reduction
+## GraphX
+- It is another library that sits on top Spark Core and is used for `Social media` and `Language Modeling`.
+- >A need for Graph Parallel models is introduced with new Graph Parallel Systems like `Giraph` and `GraphLab` to efficiently execute graph algorithms much faster than data-parallel systems.
+- The inherent challenges that comes with graph computations are `constructing a graph`, `modifying its structure` and `expressing computations that span several graphs`.
+- It is often necessary to move data between table and graph view depending on the objective of the application.
+- The goal of GraphX is to optimize the process by making it easier to view data both as graph and collections such as RDD without data movement or duplication.
