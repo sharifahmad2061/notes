@@ -40,7 +40,11 @@
 - The key,value paris don't need to be simple, they can be as large and as complex as the job at hand require.
 - The next phase is called **Shuffle** and is orchestrated behind the scenes by the mapreduce logic that is part of hadoop. The idea here is that all of the data that is emitted by the mappers is first **locally grouped by the key** that our program chose, and then **for each of the key a node is chosen to process all of the values for that key, from all mappers**.  
 - Lets says we chose US states, then 1 reducer will be sent NewYork data, 1 California and so on.  
+- > Shuffle distributes keys using a **partition class normally hash partition**. The hash function is running on the mapper node and it determines which reducer node will receive which key,value pairs.  
 - **Combiner phase**: Rather than sending multiple key/value pairs with the same key value to the Reducer node, the values are combined into one key/value pair. This is only possible where the **reduce function is additive (that is, does not lose information when combined)**. Since only one key/value pair is sent, the file transferred from Mapper node to Reducer node is smaller and network traffic is minimalized.
+    - The combiner task runs on the mapper nodes, when it is run, it pre-processes the intermediate data files on each mapper node. It pre-merges and pre-aggregates the data, that will be sent to the reducer nodes, and this speeds up the process as smaller files need to be transmitted to the reducer.
+- Commonly the **number of reduce tasks < number of map tasks**.
+- **Each mapper task produces 1 file for each reducer task.**
 ### Limitations of Hadoop V1
 ## Hadoop V2 (MapReduce Model V2)
 ### YARN
