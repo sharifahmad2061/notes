@@ -28,7 +28,19 @@
 - If 1 task tracker is very slow, it can delay the entire MR job especially toward the end of the job where everything can end up waiting for the slowest task.
 - With Speculative execution enabled, a single task can be competitively executed on multiple slave nodes in parallel.
 - For job scheduling, hadoop by default uses FIFO, with 5 optional scheduling priorities to schedule jobs from a work queue. Other scheduling algorithms like **Capacity Scheduler and Fair Scheduler** are available as Add-ins.
-
+- For MR job, the job tracker breaks down the job into Map step and Reduce step, finds where the blocks of file are located and then assigns the respective worker nodes, tasks of Map and Reduce Processing.
+- In the Map step, each worker nodes who is allocated work, takes its designated block of input, reads it and then performs the map processing on it. It also produces an output for each of the reducer node.
+- > Each Map Node stores its results in the local file system where the reducer is able to access it.
+- In the reduce step, the answers generated to sub-problems in map step, are sent to reducers nodes where they are combined or aggregated in some way to produce the final output.
+## MapReduce Overview
+![overview diagram](pics/module-1-pic3.png)
+- This slide provides an overview of the overall mapreduce process. Six blocks stored on different data nodes in HDFS are read and processed by Map Tasks running on the data nodes where the blocks are stored. The output of the map task are shuffled , then sent to the reducer task **(1 output file from each mapper task to each reducer task)**. the interim files exchanged between mapper and reducer, are not duplicated and are stored local to mapper.  
+- The reducers produce the output which is stored in HDFS, 1 output file per reducer, and they are replicated.  
+- A mapper is a relatively small program with 1 simple task, It is responsible for reading 1 small portion of the input file (i.e. 1 block of 1 file), **interpreting, filtering or transforming** the data as necessary and then **producing a stream of <key, value> pairs**.  
+- The key,value paris don't need to be simple, they can be as large and as complex as the job at hand require.
+- The next phase is called **Shuffle** and is orchestrated behind the scenes by the mapreduce logic that is part of hadoop. The idea here is that all of the data that is emitted by the mappers is first **locally grouped by the key** that our program chose, and then **for each of the key a node is chosen to process all of the values for that key, from all mappers**.  
+- Lets says we chose US states, then 1 reducer will be sent NewYork data, 1 California and so on.  
+- **Combiner phase**: Rather than sending multiple key/value pairs with the same key value to the Reducer node, the values are combined into one key/value pair. This is only possible where the **reduce function is additive (that is, does not lose information when combined)**. Since only one key/value pair is sent, the file transferred from Mapper node to Reducer node is smaller and network traffic is minimalized.
 ### Limitations of Hadoop V1
 ## Hadoop V2 (MapReduce Model V2)
 ### YARN
