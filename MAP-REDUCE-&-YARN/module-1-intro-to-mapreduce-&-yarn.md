@@ -45,7 +45,6 @@
     - The combiner task runs on the mapper nodes, when it is run, it pre-processes the intermediate data files on each mapper node. It pre-merges and pre-aggregates the data, that will be sent to the reducer nodes, and this speeds up the process as smaller files need to be transmitted to the reducer.
 - Commonly the **number of reduce tasks < number of map tasks**.
 - **Each mapper task produces 1 file for each reducer task.**
-### Limitations of Hadoop V1
 ## Hadoop V2 (MapReduce Model V2)
 ### YARN
 ### Compare Hadoop v2 to v1
