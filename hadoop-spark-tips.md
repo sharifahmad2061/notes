@@ -1,3 +1,7 @@
+# Hadoop Admin commands
+- `hdfs fsch /`
+- `hdfs dfsadmin -report`
+
 # Concept : Preferred Node Location Data
 We have to tell spark where the data is located, in order to lauch its containers there. This has to be done when creating spark context.
 ```
