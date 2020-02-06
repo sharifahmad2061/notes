@@ -3,6 +3,7 @@
 - df.take() -> will return a **`list`** of the row object.
 - df.collect() -> will get all of the data from the entire dataframe and it can sometime
                     crash the **`Driver node`**.
+- df.select('column1').collect() -> will give all rows of the selected column.
 - df.limit() -> returns a new dataframe by taking the **`first n rows`**
 - df.head() -> returns **`an array`** of first n rows from the dataframe.
 
