@@ -31,3 +31,13 @@
 - Impala by default doesn't print the header, to print it, use the **`--print_header`**.
 - To output result in other format use **`delimited`**, Impala by default uses **tab separated values**.
 - To output comma separated values use **`--output_delimiter=','`**
+# Output to file
+- To output to file in Hive use **`>`** operator.
+```
+> beeline -u jdbc:hive2://localhost:10000 --outputformat=csv2 > output.csv
+```
+- To do the same in impala shell use the **`-o`** option.
+```
+> impala-shell -f cmds.sql --delimited --output_delimiter=',' --print_header -o \
+     output.csv
+```
