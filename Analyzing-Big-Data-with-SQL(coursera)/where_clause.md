@@ -16,3 +16,9 @@ SELECT * FROM games WHERE list_price < 10;
 ```
 SELECT * FROM games WHERE list_price < 10 AND quantity > 100;
 ```
+
+-   The SQL engines evalute the where clause before they compute the expressions in the SELECT LIST, therefore the below sql statement `wont work`:
+
+```
+SELECT red + green + blue AS rgb_sum FROM wax.crayons WHERE rgb_sum > 650;
+```
