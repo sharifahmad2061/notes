@@ -41,3 +41,5 @@ beeline -u ... --hivevar red="255" \
                 --hivevar green="255" \
                 --hivevar blue="255" -f color.sql
 ```
+
+-   In **`Impala Shell`** variable substitution works the same as beeline, except we use **`--var`** option instead of **`--hivevar`**
