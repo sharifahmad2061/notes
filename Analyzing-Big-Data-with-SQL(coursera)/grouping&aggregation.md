@@ -9,9 +9,25 @@
 SELECT count(distinct year, month, day) FROM flights;
 ```
 
+- If there are **`null values`** in the columns **`count(distinct ...)`** will ignore them and return the number of rows without nulls.
 - We can groupby multiple columns in the following way.
 
 ```
 SELECT year, month, day, count(*) AS num_of_flights
     FROM flights GROUP BY year, month, day;
+```
+
+- When grouping by numerical column, we can use **`where`** clause to filter the rows and therefore get a small number of rows in the outcome.
+- When working with numerical column, we can also use **`binning`** through the use of **`CASE WHEN THEN`** statement which will return only a few number of rows in the result.
+
+```
+SELECT MIN(dep_time), MAX(dep_time), count(*)
+    FROM flights
+    GROUP BY CASE WHEN dep_time IS NULL THEN 'missing'
+                  WHEN dep_time < 500 THEN 'night'
+                  WHEN dep_time < 1200 THEN 'morning'
+                  WHEN dep_time < 1700 THEN 'afternoon'
+                  WHEN dep_time < 2200 THEN 'evening'
+                  ELSE 'night'
+                END;
 ```
