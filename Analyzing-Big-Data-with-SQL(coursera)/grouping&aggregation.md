@@ -31,3 +31,9 @@ SELECT MIN(dep_time), MAX(dep_time), count(*)
                   ELSE 'night'
                 END;
 ```
+
+- The result of the above query doesn't include the **`binned`** categories, to show it in the result, we'll have to put it in the **`SELECT LIST`** and then use its **`alias`** in the **`GROUP BY`** clause. **`Hive`** doesn't allow the use of alias in the **`GROUP BY`** clause. In the case of **`Hive`** we'll have to put the whole case statement in the GROUP BY clause.
+
+## Positional Reference
+
+- Instead of putting the whole case statement in the GROUP BY statement we can use **`positional reference`** in the GROUP BY clause. **Positional reference** is the index number of the **`SELECT LIST`**, starting at 1. For example **`GROUP BY 1;`**
