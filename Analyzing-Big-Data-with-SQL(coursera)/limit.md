@@ -20,3 +20,12 @@ SELECT * FROM flights LIMIT 5;
   - LIMIT 100 OFFSET 0
   - LIMIT 100 OFFSET 100
   - LIMIT 100 OFFSET 200
+- Hive doesn't support the `offset` keyword, for pagination it requires 2 integers after the LIMIT keyword eg.
+
+```sql
+select * from flights limit offset,number_of_rows;
+select * from flights limit 0,100;
+select * from flights limit 100,100;
+```
+
+- MySQL supports both offset and the comma separted limit syntax for pagination.
