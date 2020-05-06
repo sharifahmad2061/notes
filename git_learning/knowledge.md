@@ -43,4 +43,14 @@ git ls-files -s
 ## The Commit Tree
 
 - The `git commit` command adds changes to a `permanent snapshot` that lives in the `commit history`. This snapshot also includes the `state of the staging index` at the time of the commit.
--
+
+## git reset
+
+- `git reset` is similar in behavior to `git checkout`, where git checkout solely operates on `HEAD ref pointer`, git reset changes both the `HEAD and the current branch ref pointers`.
+- `git checkout commit-hash` will bring the repo to a `detached HEAD` state.
+- the ref pointer modification updates the `commit tree`.
+- the command-line arguments `--soft`, `--mixed` and `--hard` to `git reset`, direct git how to **modify** `staging index and working directory trees`.
+
+## references
+
+- [atlassian git reset manual](https://www.atlassian.com/git/tutorials/undoing-changes/git-reset)
