@@ -37,3 +37,5 @@ SELECT MIN(dep_time), MAX(dep_time), count(*)
 ## Positional Reference
 
 - Instead of putting the whole case statement in the GROUP BY statement we can use **`positional reference`** in the GROUP BY clause. **Positional reference** is the index number of the **`SELECT LIST`**, starting at 1. For example **`GROUP BY 1;`**
+
+- The `Case When Then` logic can also be used in the select list.
